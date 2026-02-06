@@ -1,0 +1,24 @@
+use sentiment_analysis;
+
+create table niches(
+	id int primary key auto_increment,
+    term varchar(100) unique,
+    last_offset int default 0
+    );
+    
+create table apps(
+	id int primary key auto_increment,
+    app_id bigint unique,
+    app_name varchar(100) unique,
+    niche_id int, 
+    foreign key (niche_id) references niches(id)
+);
+
+CREATE TABLE reviews (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  app_id BIGINT,
+  review_text TEXT,
+  rating INT,
+  review_date DATETIME,
+  UNIQUE(app_id, review_date)
+);
